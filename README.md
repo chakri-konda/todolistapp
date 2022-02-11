@@ -7,4 +7,6 @@ The todo list data will persist in the localStorage.
 
 ### To Run
 
+`npm install`
+
 `npm start`
