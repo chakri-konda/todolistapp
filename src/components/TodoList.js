@@ -11,7 +11,8 @@ const TodoList = (props) => {
             key={todo.key}
             id={todo.key}
             onDeleteTodo={props.deleteTodo}
-            onUpdateTodo={props.updateTodo}
+            onEditTodo={props.editTodo}
+            // onUpdateTodo={props.updateTodo}
           >
             {todo.value}
           </Todo>
