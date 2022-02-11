@@ -1,0 +1,33 @@
+.input-form {
+  display: flex;
+  align-items: center;
+  margin-top: 5%;
+}
+.todo-input {
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  padding-left: 15px;
+  margin-right: 5px;
+  box-sizing: border-box;
+}
+
+.submitBtn {
+  border: none;
+  height: 35px;
+  width: 35px;
+  color: #0e1c30;
+  border-radius: 50%;
+  background-color: #87aade;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5px;
+}
+
+.submitBtn:hover {
+  background-color: #3268b6;
+  color: white;
+  cursor: pointer;
+}

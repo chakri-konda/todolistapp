@@ -1,0 +1,11 @@
+.card {
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #e2ecfa;
+  border-radius: 15px;
+  overflow: auto;
+  box-shadow: rgba(0, 0, 0, 0.26) 0px 3px 8px;
+}
