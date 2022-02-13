@@ -6,7 +6,6 @@ import AddTodoList from "./AddTodoList";
 const Dock = (props) => {
   const isEmptyTodoList = Object.keys(props.todoListData).length === 0;
 
-  console.log(isEmptyTodoList);
   return (
     <div
       className={`${
@@ -18,6 +17,7 @@ const Dock = (props) => {
         addTodoList={props.addTodoList}
       />
       <TodoLists
+        activeLID={props.activeLID}
         todoListData={props.todoListData}
         deleteTodoList={props.deleteTodoList}
         activeList={props.activeList}

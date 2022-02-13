@@ -21,9 +21,13 @@ const getTime = (date) => {
   if (isToday(date)) {
     let hours = date.getHours();
     let mins = date.getMinutes();
+    let merid = hours < 12 ? "AM" : "PM";
+
+    if (hours > 12) hours -= 12;
+
     if (hours < 10) hours = "0" + hours;
     if (mins < 10) mins = "0" + mins;
-    return hours + ":" + mins;
+    return hours + ":" + mins + " " + merid;
   }
   let day = date.getDate();
   if (day < 10) day = "0" + day;
@@ -43,6 +47,7 @@ const TodoLists = (props) => {
         {todoListData.map((todoList) => {
           return (
             <TodoListItem
+              activeLID={props.activeLID}
               key={todoList.lid}
               lid={todoList.lid}
               content={todoList.title}

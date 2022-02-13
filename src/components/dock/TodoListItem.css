@@ -24,15 +24,21 @@
   width: 130px;
 }
 
+.todo-list-time-container {
+  display: flex;
+}
+
 .todo-list-time {
-  font-size: 10px;
+  font-family: "DM Sans", sans-serif;
+  margin-left: 3px;
+  font-size: 11px;
 }
 
 #todo-list-delete-btn {
   height: 35px;
   width: 35px;
   margin: 1px;
-  background-color: #e2ecfa;
+  background-color: inherit;
   border-radius: 50%;
   border: 0;
   cursor: pointer;

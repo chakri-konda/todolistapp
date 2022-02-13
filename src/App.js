@@ -104,11 +104,11 @@ const DUMMY_LIST_DATA = {
   },
 };
 
-const EMPTY = {};
+const EMPTY_DUMMY_LIST_DATA = {};
 
 function App() {
   let [activeLID, setActiveLID] = useState(-1);
-  const [todoListData, editTodoListData] = useState(EMPTY);
+  const [todoListData, editTodoListData] = useState(DUMMY_LIST_DATA);
 
   // manages the active todo list to be displayed
   const setActiveListHandler = (lid) => {
@@ -199,6 +199,7 @@ function App() {
     <BackgroundImg>
       <div className="flex body-container">
         <Dock
+          activeLID={activeLID}
           todoListData={todoListData}
           addTodoList={onAddTodoListHandler}
           deleteTodoList={onDeleteTodoListHandler}
