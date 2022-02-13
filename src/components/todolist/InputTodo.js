@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BsPlusCircle } from "react-icons/bs";
+import { AiOutlineAppstoreAdd } from "react-icons/ai";
 
 import "./InputTodo.css";
 
@@ -12,7 +13,8 @@ const InputTodo = (props) => {
       alert("Todo is empty!");
       return;
     }
-    props.onAdd(todoText);
+
+    props.addTodo(todoText);
     setTodoText("");
   };
 
@@ -30,7 +32,7 @@ const InputTodo = (props) => {
         onChange={todoChangeHandler}
       />
       <button className="submitBtn" type="submit">
-        <BsPlusCircle size={23} />
+        <AiOutlineAppstoreAdd size={19} />
       </button>
     </form>
   );

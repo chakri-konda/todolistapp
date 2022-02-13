@@ -7,9 +7,9 @@ const TodoList = (props) => {
       {props.todoData.map((todo) => {
         return (
           <Todo
-            checked={todo.done}
-            key={todo.key}
-            id={todo.key}
+            key={todo.tid}
+            tid={todo.tid}
+            checked={todo.checked}
             onDeleteTodo={props.deleteTodo}
             onEditTodo={props.editTodo}
             // onUpdateTodo={props.updateTodo}

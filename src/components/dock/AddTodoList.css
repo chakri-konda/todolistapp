@@ -1,0 +1,22 @@
+.add-todo-list-btn-container {
+  padding: 25px;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  width: -webkit-fill-available;
+}
+
+.add-todo-list-btn {
+  cursor: pointer;
+  border: none;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  color: #162c4f;
+  box-shadow: rgba(0, 0, 0, 0.26) 0px 3px 8px;
+}
+
+.add-todo-list-btn:hover {
+  background-color: #2d5aa0;
+  color: white;
+}

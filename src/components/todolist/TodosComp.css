@@ -1,0 +1,14 @@
+.todos-container {
+  padding: 25px;
+  max-width: 450px;
+}
+
+.main-container {
+  flex: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: auto;
+  margin: 0 10px;
+}

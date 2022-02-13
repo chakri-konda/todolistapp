@@ -9,19 +9,19 @@ const Todo = (props) => {
 
   const onDeleteTodoHandler = (event) => {
     if (event !== undefined) event.preventDefault();
-    props.onDeleteTodo(props.id);
+    props.onDeleteTodo(props.tid);
   };
 
   const onEditTodoHandler = (event) => {
     if (event.target.checked) setContentEditable("true");
     else {
-      const actualValue = props.children;
-      if (actualValue !== editedValue) {
-        if (editedValue.trim().length === 0) {
+      editedValue = editedValue.trim();
+      if (props.children !== editedValue) {
+        if (editedValue.length === 0) {
           onDeleteTodoHandler();
           return;
         } else {
-          props.onEditTodo(props.id, props.checked, editedValue);
+          props.onEditTodo(props.tid, props.checked, editedValue);
           // pass new data, id
         }
       }
@@ -46,14 +46,15 @@ const Todo = (props) => {
           // value={props.checked}
           // onChange={onUpdateTodoHandler}
         />
-        <div
+        <p
           className="todo-context"
           contentEditable={contentEditableValue}
           onInput={onContentChangeHandler}
           suppressContentEditableWarning={true}
         >
-          {props.children}
-        </div>
+          {/* {props.children} */}
+          {editedValue}
+        </p>
       </div>
       <div className="flex">
         <label className="flex switch">

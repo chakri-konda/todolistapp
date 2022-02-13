@@ -1,0 +1,9 @@
+.todo-lists-cover {
+  margin-top: 75px;
+  overflow: auto;
+}
+
+.todo-lists {
+  list-style: none;
+  padding: 0;
+}

@@ -1,0 +1,20 @@
+.empty-dock-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #03398a5e;
+  overflow: auto;
+  justify-content: center;
+}
+
+.dock-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #75a2e65e;
+  overflow: auto;
+  justify-content: space-between;
+}

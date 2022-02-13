@@ -1,0 +1,47 @@
+.todo-list-cover {
+  margin: 8px;
+}
+
+#todo-list-bundle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  cursor: pointer;
+}
+.todo-list-items-content {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  margin: auto;
+  padding: 5px;
+}
+
+.todo-list-title {
+  font-size: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 130px;
+}
+
+.todo-list-time {
+  font-size: 10px;
+}
+
+#todo-list-delete-btn {
+  height: 35px;
+  width: 35px;
+  margin: 1px;
+  background-color: #e2ecfa;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  color: #e2ecfa;
+}
+#todo-list-bundle:hover #todo-list-delete-btn {
+  color: black;
+}
+#todo-list-bundle:hover #todo-list-delete-btn:hover {
+  color: white;
+  background-color: rgb(221, 69, 69);
+}
