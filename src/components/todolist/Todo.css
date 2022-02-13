@@ -38,7 +38,7 @@ input[type="checkbox"]:checked + .todo-context {
   height: 0;
 }
 input + .pencil {
-  height: 20px;
+  height: 19px;
   margin: 3px;
   padding: 7px;
   border-radius: 50%;

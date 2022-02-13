@@ -1,11 +1,12 @@
 import "./Todo.css";
 import { BiTrash } from "react-icons/bi";
 import { TiPencil } from "react-icons/ti";
+import { MdOutlineDownloadDone } from "react-icons/md";
 import { useState } from "react";
 
 const Todo = (props) => {
   let editedValue = props.children;
-  const [contentEditableValue, setContentEditable] = useState("false");
+  const [contentEditable, setContentEditable] = useState("false");
 
   const onDeleteTodoHandler = (event) => {
     if (event !== undefined) event.preventDefault();
@@ -13,9 +14,6 @@ const Todo = (props) => {
   };
 
   const onEditTodoHandler = (event) => {
-    // if content is marked checked, editing is denied
-    if (props.checked) return;
-
     if (event.target.checked) setContentEditable("true");
     else {
       editedValue = editedValue.trim();
@@ -49,7 +47,7 @@ const Todo = (props) => {
         />
         <p
           className="todo-context"
-          contentEditable={contentEditableValue}
+          contentEditable={contentEditable}
           onInput={onContentChangeHandler}
           suppressContentEditableWarning={true}
         >
@@ -58,13 +56,20 @@ const Todo = (props) => {
         </p>
       </div>
       <div className="flex">
-        <label className="flex switch">
+        <label
+          className="flex switch"
+          style={{ display: `${props.checked ? "none" : ""}` }}
+        >
           <input
             className="check-box"
             type="checkbox"
             onChange={onEditTodoHandler}
-          ></input>
-          <TiPencil className="pencil" size={19} />
+          />
+          {contentEditable === "false" ? (
+            <TiPencil className="pencil" size={19} />
+          ) : (
+            <MdOutlineDownloadDone className="pencil" size={19} />
+          )}
         </label>
         <button
           className="todo-mod-btn delete-btn"

@@ -111,37 +111,46 @@ function App() {
   const [todoListData, editTodoListData] = useState(DUMMY_LIST_DATA);
 
   // manages the active todo list to be displayed
-  const setActiveListHandler = (lid) => {
+  const setActiveListHandler = (lid = activeLID, setContentEditable) => {
+    if (setContentEditable !== undefined) setContentEditable("false");
     setActiveLID(lid);
   };
 
   // List Data Handlers
   const onAddTodoListHandler = () => {
-    editTodoListData((prevTodoListData) => {
+    editTodoListData((prevTodoLists) => {
       const newTodoList = {
         lid: autoIncListKey,
         title: "New Todo List",
         lastUpdated: new Date(),
         todoData: [],
       };
-      const updatedTodoListData = {
-        ...prevTodoListData,
+      const updatedTodoLists = {
+        ...prevTodoLists,
         [autoIncListKey]: newTodoList,
       };
 
-      return updatedTodoListData;
+      return updatedTodoLists;
     });
     setActiveListHandler(autoIncListKey++);
   };
   const onDeleteTodoListHandler = (lid) => {
-    editTodoListData((prevTodoList) => {
-      const updatedTodoList = Object.assign({}, prevTodoList);
-      delete updatedTodoList[lid];
+    editTodoListData((prevTodoLists) => {
+      const updatedTodoLists = { ...prevTodoLists };
+      delete updatedTodoLists[lid];
       if (activeLID === lid) {
         activeLID = -1;
       }
 
-      return updatedTodoList;
+      return updatedTodoLists;
+    });
+  };
+  const onEditTitleHandler = (title) => {
+    editTodoListData((prevTodoLists) => {
+      const updatedTodoLists = { ...prevTodoLists };
+      updatedTodoLists[activeLID].title = title;
+      updatedTodoLists[activeLID].lastUpdated = new Date();
+      return updatedTodoLists;
     });
   };
 
@@ -183,12 +192,16 @@ function App() {
           if (todoText !== undefined) {
             todo.value = todoText;
             todo.lastUpdated = lastUpdated;
-            updatedTodoList[activeLID].lastUpdated = lastUpdated;
           }
         }
         return todo;
       });
       const updatedTodoList = { ...prevTodoList };
+
+      // time is updated only for text based edit
+      if (todoText !== undefined) {
+        updatedTodoList[activeLID].lastUpdated = lastUpdated;
+      }
 
       updatedTodoList[activeLID].todoData = updatedTodos;
       return updatedTodoList;
@@ -212,6 +225,8 @@ function App() {
             deleteTodo={deleteTodoHandler}
             editTodo={editTodoHandler}
             addTodo={addTodoHandler}
+            activeList={setActiveListHandler}
+            editTitle={onEditTitleHandler}
           />
         ) : (
           ``

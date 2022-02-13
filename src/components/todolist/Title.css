@@ -24,3 +24,11 @@
   margin: 5px;
   box-shadow: rgba(0, 0, 0, 0.26) 0px 3px 8px;
 }
+
+#title-edit-pencil {
+  color: #e2ecfa;
+}
+
+.title:hover #title-edit-pencil {
+  color: inherit;
+}

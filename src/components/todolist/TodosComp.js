@@ -10,7 +10,13 @@ const TodosComp = (props) => {
     <div className="main-container">
       <Card>
         <div className="todos-container">
-          <Title title={props.title} />
+          <Title
+            editable={"false"}
+            editTitle={props.editTitle}
+            activeList={props.activeList}
+          >
+            {props.title}
+          </Title>
           <TodoList
             todoData={props.todoData}
             deleteTodo={props.deleteTodo}
