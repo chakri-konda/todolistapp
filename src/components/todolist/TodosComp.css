@@ -1,6 +1,7 @@
 .todos-container {
-  padding: 25px;
-  max-width: 450px;
+  padding: 20px;
+  min-width: 375px;
+  max-width: 425px;
 }
 
 .main-container {

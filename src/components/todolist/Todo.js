@@ -13,6 +13,9 @@ const Todo = (props) => {
   };
 
   const onEditTodoHandler = (event) => {
+    // if content is marked checked, editing is denied
+    if (props.checked) return;
+
     if (event.target.checked) setContentEditable("true");
     else {
       editedValue = editedValue.trim();
@@ -21,8 +24,7 @@ const Todo = (props) => {
           onDeleteTodoHandler();
           return;
         } else {
-          props.onEditTodo(props.tid, props.checked, editedValue);
-          // pass new data, id
+          props.editTodo(props.tid, props.checked, editedValue);
         }
       }
       setContentEditable("false");
@@ -33,18 +35,17 @@ const Todo = (props) => {
     editedValue = event.target.textContent;
   };
 
-  // const onUpdateTodoHandler = (event) => {
-  //   event.preventDefault();
-  //   props.onUpdateTodo(props.id);
-  // };
+  const onCheckTodoHandler = (event) => {
+    props.editTodo(props.tid, props.checked ? false : true);
+  };
 
   return (
     <li className="todo">
       <div className="flex">
         <input
           type="checkbox"
-          // value={props.checked}
-          // onChange={onUpdateTodoHandler}
+          defaultChecked={props.checked}
+          onChange={onCheckTodoHandler}
         />
         <p
           className="todo-context"

@@ -5,8 +5,8 @@ import BackgroundImg from "./UI/BackgroundImg";
 import Dock from "./components/dock/Dock";
 import TodosComp from "./components/todolist/TodosComp";
 
-let autoIncListKey = 100;
-let autoIncTodoKey = 10;
+let autoIncListKey = 10;
+let autoIncTodoKey = 100;
 const DUMMY_LIST_DATA = {
   1: {
     lid: 1,
@@ -14,13 +14,13 @@ const DUMMY_LIST_DATA = {
     lastUpdated: new Date(2021, 5, 6),
     todoData: [
       {
-        tid: 0,
+        tid: 10,
         value: "Bring some groceries at DMart.",
-        checked: false,
+        checked: true,
         lastUpdated: new Date(2021, 5, 6),
       },
       {
-        tid: 1,
+        tid: 11,
         value: "Beat some villains.",
         checked: false,
         lastUpdated: new Date(2021, 5, 6),
@@ -33,14 +33,14 @@ const DUMMY_LIST_DATA = {
     lastUpdated: new Date(2020, 1, 3),
     todoData: [
       {
-        tid: 0,
-        value: "Meet Saitama and Warn him",
+        tid: 12,
+        value: "Meet Saitama and make him join the gang.",
         checked: false,
         lastUpdated: new Date(2020, 1, 3),
       },
       {
-        tid: 1,
-        value: "Go to Hero Station & Report cases.",
+        tid: 13,
+        value: "Go to Hero Organisaiton Building & Report cases.",
         checked: false,
         lastUpdated: new Date(2020, 1, 3),
       },
@@ -52,19 +52,19 @@ const DUMMY_LIST_DATA = {
     lastUpdated: new Date(),
     todoData: [
       {
-        tid: 0,
+        tid: 14,
         value: "Train like there's no tommorow.",
         checked: false,
         lastUpdated: new Date(),
       },
       {
-        tid: 1,
+        tid: 15,
         value: "Train with Vegeta under Beerus 💪",
         checked: false,
         lastUpdated: new Date(),
       },
       {
-        tid: 2,
+        tid: 16,
         value: "Do a Million Sit Ups.",
         checked: false,
         lastUpdated: new Date(),
@@ -77,19 +77,19 @@ const DUMMY_LIST_DATA = {
     lastUpdated: new Date(),
     todoData: [
       {
-        tid: 0,
+        tid: 17,
         value: "Build a compelte Todo Web App",
         checked: false,
         lastUpdated: new Date(),
       },
       {
-        tid: 1,
+        tid: 18,
         value: "Drink 5 Ltrs. of Water!",
         checked: false,
         lastUpdated: new Date(),
       },
       {
-        tid: 2,
+        tid: 19,
         value: "Attend the meet on time @5:30PM",
         checked: false,
         lastUpdated: new Date(),
@@ -104,7 +104,7 @@ const DUMMY_LIST_DATA = {
   },
 };
 
-const EMPTY_DUMMY_LIST_DATA = {};
+// const EMPTY_DUMMY_LIST_DATA = {};
 
 function App() {
   let [activeLID, setActiveLID] = useState(-1);
@@ -112,7 +112,6 @@ function App() {
 
   // manages the active todo list to be displayed
   const setActiveListHandler = (lid) => {
-    console.log(lid);
     setActiveLID(lid);
   };
 
@@ -141,6 +140,7 @@ function App() {
       if (activeLID === lid) {
         activeLID = -1;
       }
+
       return updatedTodoList;
     });
   };
@@ -179,21 +179,21 @@ function App() {
       const lastUpdated = new Date();
       const updatedTodos = prevTodoList[activeLID].todoData.map((todo) => {
         if (todo.tid === tid) {
-          if (checked !== undefined) todo.done = checked;
-          if (todoText !== undefined) todo.value = todoText;
-          todo.lastUpdated = lastUpdated;
+          if (checked !== undefined) todo.checked = checked;
+          if (todoText !== undefined) {
+            todo.value = todoText;
+            todo.lastUpdated = lastUpdated;
+            updatedTodoList[activeLID].lastUpdated = lastUpdated;
+          }
         }
         return todo;
       });
       const updatedTodoList = { ...prevTodoList };
 
       updatedTodoList[activeLID].todoData = updatedTodos;
-      updatedTodoList[activeLID].lastUpdated = lastUpdated;
       return updatedTodoList;
     });
   };
-
-  // console.log(todoData, activeLID);
 
   return (
     <BackgroundImg>

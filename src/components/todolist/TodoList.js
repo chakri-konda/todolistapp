@@ -11,7 +11,7 @@ const TodoList = (props) => {
             tid={todo.tid}
             checked={todo.checked}
             onDeleteTodo={props.deleteTodo}
-            onEditTodo={props.editTodo}
+            editTodo={props.editTodo}
             // onUpdateTodo={props.updateTodo}
           >
             {todo.value}
