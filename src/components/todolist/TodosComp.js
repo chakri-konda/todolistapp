@@ -11,6 +11,7 @@ const TodosComp = (props) => {
       <Card>
         <div className="todos-container">
           <Title
+            key={props.lid}
             editable={"false"}
             editTitle={props.editTitle}
             activeList={props.activeList}

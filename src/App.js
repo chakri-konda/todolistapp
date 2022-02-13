@@ -220,6 +220,7 @@ function App() {
         />
         {todoListData[activeLID] ? (
           <TodosComp
+            lid={activeLID}
             todoData={todoListData[activeLID].todoData}
             title={todoListData[activeLID].title}
             deleteTodo={deleteTodoHandler}

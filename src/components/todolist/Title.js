@@ -15,7 +15,7 @@ const Title = (props) => {
     else {
       titleValue = titleValue.trim();
       if (props.title !== titleValue) {
-        // prob
+        // prob - title not changing back to props.child if len is 0
         if (titleValue.length === 0) {
           titleValue = props.children;
           props.activeList();
