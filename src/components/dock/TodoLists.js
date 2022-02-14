@@ -2,7 +2,7 @@ import "./TodoLists.css";
 
 import TodoListItem from "./TodoListItem";
 
-import { getTime } from "../../timeHelper";
+import { getTime } from "../../helpers";
 
 const TodoLists = (props) => {
   const todoListData = Object.values(props.todoListData);
