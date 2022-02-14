@@ -32,6 +32,19 @@ input[type="checkbox"]:checked + .todo-context {
   margin-left: 10px;
 }
 
+.todo .todo-context-time-container {
+  display: none;
+}
+.todo:hover .todo-context-time-container {
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+}
+
+.todo-context-time {
+  margin-left: 3px;
+}
+
 .switch input {
   opacity: 0;
   width: 0;

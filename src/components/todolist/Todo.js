@@ -1,8 +1,11 @@
 import "./Todo.css";
+
+import { useState } from "react";
+
+import { AiOutlineSave } from "react-icons/ai";
 import { BiTrash } from "react-icons/bi";
 import { TiPencil } from "react-icons/ti";
 import { MdOutlineDownloadDone } from "react-icons/md";
-import { useState } from "react";
 
 const Todo = (props) => {
   let editedValue = props.children;
@@ -45,15 +48,23 @@ const Todo = (props) => {
           defaultChecked={props.checked}
           onChange={onCheckTodoHandler}
         />
-        <p
-          className="todo-context"
-          contentEditable={contentEditable}
-          onInput={onContentChangeHandler}
-          suppressContentEditableWarning={true}
-        >
-          {/* {props.children} */}
-          {editedValue}
-        </p>
+        <div className="todo-context">
+          <div
+            className="todo-context-value"
+            contentEditable={contentEditable}
+            onInput={onContentChangeHandler}
+            suppressContentEditableWarning={true}
+          >
+            {editedValue}
+          </div>
+          <div
+            className="todo-context-time-container"
+            style={{ display: `${contentEditable === "true" ? "none" : ""}` }}
+          >
+            <AiOutlineSave size={11} />
+            <div className="todo-context-time">{props.lastUpdated}</div>
+          </div>
+        </div>
       </div>
       <div className="flex">
         <label

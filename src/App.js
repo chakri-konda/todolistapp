@@ -225,9 +225,9 @@ function App() {
         rawTodoListData !== null ? JSON.parse(rawTodoListData) : {};
 
       const prevListKey = +localStorage.getItem("lid");
-      if (prevListKey !== NaN) autoIncListKey = prevListKey;
+      if (!isNaN(prevListKey)) autoIncListKey = prevListKey;
       const prevTodoKey = +localStorage.getItem("tid");
-      if (prevTodoKey !== NaN) autoIncTodoKey = prevTodoKey;
+      if (!isNaN(prevTodoKey)) autoIncTodoKey = prevTodoKey;
 
       editTodoListData(storedTodoListData);
     } else {

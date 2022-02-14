@@ -1,5 +1,8 @@
 import "./TodoList.css";
+
 import Todo from "./Todo";
+
+import { getTime } from "../../timeHelper";
 
 const TodoList = (props) => {
   return (
@@ -10,9 +13,9 @@ const TodoList = (props) => {
             key={todo.tid}
             tid={todo.tid}
             checked={todo.checked}
+            lastUpdated={getTime(todo.lastUpdated)}
             onDeleteTodo={props.deleteTodo}
             editTodo={props.editTodo}
-            // onUpdateTodo={props.updateTodo}
           >
             {todo.value}
           </Todo>
