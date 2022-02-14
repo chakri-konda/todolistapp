@@ -8,16 +8,15 @@ const getIST = (date) => {
   return new Date(date.getTime() + (ISTOffset + timeOffset) * 60000);
 };
 
-const isToday = (date) => {
+const isToday = (cdate) => {
   const today = getIST(new Date());
-  return (
-    date.getDate() === today.getDate() &&
-    date.getMonth() === today.getMonth() &&
-    date.getFullYear() === today.getFullYear()
-  );
+  const date = new Date(cdate);
+
+  return date.setHours(0, 0, 0, 0) === today.setHours(0, 0, 0, 0);
 };
 
-const getTime = (date) => {
+const getTime = (cdate) => {
+  const date = new Date(cdate);
   if (isToday(date)) {
     let hours = date.getHours();
     let mins = date.getMinutes();

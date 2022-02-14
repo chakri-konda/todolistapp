@@ -18,7 +18,7 @@ const TodoListItem = (props) => {
     <li className="todo-list-cover">
       <Card
         borderRadius={"5px"}
-        backgroundColor={`${props.activeLID === props.lid ? "#87aade" : ""}`}
+        backgroundColor={`${props.activeLID === props.lid ? "#91bfff" : ""}`}
       >
         <div id="todo-list-bundle">
           <div
@@ -31,7 +31,12 @@ const TodoListItem = (props) => {
               <div className="todo-list-time">{props.lastUpdated}</div>
             </div>
           </div>
-          <button id="todo-list-delete-btn">
+          <button
+            id="todo-list-delete-btn"
+            style={{
+              color: `${props.activeLID === props.lid ? "#0e1c2f" : ""}`,
+            }}
+          >
             <BiTrash size={19} onClick={onDeleteTodoListHandler} />
           </button>
         </div>

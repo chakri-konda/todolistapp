@@ -14,13 +14,12 @@ const Title = (props) => {
     if (event.target.checked) setContentEditable("true");
     else {
       titleValue = titleValue.trim();
-      if (props.title !== titleValue) {
+      if (props.children !== titleValue) {
         // prob - title not changing back to props.child if len is 0
         if (titleValue.length === 0) {
           titleValue = props.children;
-          props.activeList();
-          // alert("Title Can't be Empty!");
-          console.log("here", titleValue);
+          props.activeList(-1);
+          alert("Title Can't be Empty!");
         } else {
           // send the title back to main file
           props.editTitle(titleValue);
