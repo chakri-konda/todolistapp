@@ -4,8 +4,11 @@ import Card from "../UI/Card";
 import Title from "./Title";
 import TodoList from "./TodoList";
 import InputTodo from "./InputTodo";
+import EmptyList from "./EmptyList";
 
 const TodosComp = (props) => {
+  const isTodoDataEmpty = props.todoData.length === 0;
+
   return (
     <div className="main-container">
       <Card>
@@ -17,11 +20,15 @@ const TodosComp = (props) => {
           >
             {props.title}
           </Title>
-          <TodoList
-            todoData={props.todoData}
-            onDeleteTodo={props.onDeleteTodo}
-            onEditTodo={props.onEditTodo}
-          />
+          {isTodoDataEmpty ? (
+            <EmptyList />
+          ) : (
+            <TodoList
+              todoData={props.todoData}
+              onDeleteTodo={props.onDeleteTodo}
+              onEditTodo={props.onEditTodo}
+            />
+          )}
           <InputTodo onAddTodo={props.onAddTodo} />
         </div>
       </Card>

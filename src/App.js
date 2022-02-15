@@ -6,7 +6,10 @@ import BackgroundImg from "./components/UI/BackgroundImg";
 import Dock from "./components/dock/Dock";
 import TodosComp from "./components/todolist/TodosComp";
 
-// import { DUMMY_LIST_DATA, EMPTY_DUMMY_LIST_DATA } from "./components/helpers.js";
+// import {
+//   DUMMY_LIST_DATA,
+//   EMPTY_DUMMY_LIST_DATA,
+// } from "./components/helpers.js";
 
 let autoIncListKey = 10;
 let autoIncTodoKey = 100;
