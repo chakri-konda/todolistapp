@@ -1,17 +1,15 @@
 import "./TodoListItem.css";
 import { BiTrash } from "react-icons/bi";
 import { AiOutlineSave } from "react-icons/ai";
-import Card from "../../UI/Card";
+import Card from "../UI/Card";
 
 const TodoListItem = (props) => {
-  const onDeleteTodoListHandler = (event) => {
-    event.preventDefault();
-    props.deleteTodoList(props.lid);
+  const deleteTodoListHandler = (event) => {
+    props.onDeleteTodoList(props.lid);
   };
 
-  const onActivateListHandler = (event) => {
-    event.preventDefault();
-    props.activeList(props.lid);
+  const activeListHandler = (event) => {
+    props.onActiveList(props.lid);
   };
 
   return (
@@ -21,11 +19,8 @@ const TodoListItem = (props) => {
         backgroundColor={`${props.activeLID === props.lid ? "#91bfff" : ""}`}
       >
         <div id="todo-list-bundle">
-          <div
-            className="todo-list-items-content"
-            onClick={onActivateListHandler}
-          >
-            <div className="todo-list-title">{props.content}</div>
+          <div className="todo-list-items-content" onClick={activeListHandler}>
+            <div className="todo-list-title">{props.title}</div>
             <div className="todo-list-time-container">
               <AiOutlineSave size={12} />
               <div className="todo-list-time">{props.lastUpdated}</div>
@@ -37,7 +32,7 @@ const TodoListItem = (props) => {
               color: `${props.activeLID === props.lid ? "#0e1c2f" : ""}`,
             }}
           >
-            <BiTrash size={19} onClick={onDeleteTodoListHandler} />
+            <BiTrash size={19} onClick={deleteTodoListHandler} />
           </button>
         </div>
       </Card>

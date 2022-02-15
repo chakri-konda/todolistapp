@@ -2,7 +2,7 @@ import "./TodoLists.css";
 
 import TodoListItem from "./TodoListItem";
 
-import { getTime } from "../../helpers";
+import { getTime } from "../helpers";
 
 const TodoLists = (props) => {
   const todoListData = Object.values(props.todoListData);
@@ -16,10 +16,10 @@ const TodoLists = (props) => {
               activeLID={props.activeLID}
               key={todoList.lid}
               lid={todoList.lid}
-              content={todoList.title}
+              title={todoList.title}
               lastUpdated={getTime(todoList.lastUpdated)}
-              deleteTodoList={props.deleteTodoList}
-              activeList={props.activeList}
+              onDeleteTodoList={props.onDeleteTodoList}
+              onActiveList={props.onActiveList}
             />
           );
         })}

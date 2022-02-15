@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { BsPlusCircle } from "react-icons/bs";
-import { AiOutlineAppstoreAdd } from "react-icons/ai";
-
 import "./InputTodo.css";
+
+import { useState } from "react";
+
+import { AiOutlineAppstoreAdd } from "react-icons/ai";
 
 const InputTodo = (props) => {
   const [todoText, setTodoText] = useState("");
@@ -14,7 +14,7 @@ const InputTodo = (props) => {
       return;
     }
 
-    props.addTodo(todoText);
+    props.onAddTodo(todoText);
     setTodoText("");
   };
 

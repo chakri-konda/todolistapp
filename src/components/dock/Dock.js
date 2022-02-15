@@ -12,15 +12,12 @@ const Dock = (props) => {
         isEmptyTodoList ? "empty-dock-container" : "dock-container"
       }`}
     >
-      <AddTodoList
-        isTodoListEmpty={isEmptyTodoList}
-        addTodoList={props.addTodoList}
-      />
+      <AddTodoList onAddTodoList={props.onAddTodoList} />
       <TodoLists
         activeLID={props.activeLID}
         todoListData={props.todoListData}
-        deleteTodoList={props.deleteTodoList}
-        activeList={props.activeList}
+        onDeleteTodoList={props.onDeleteTodoList}
+        onActiveList={props.onActiveList}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import "./TodosComp.css";
 
-import Card from "../../UI/Card";
+import Card from "../UI/Card";
 import Title from "./Title";
 import TodoList from "./TodoList";
 import InputTodo from "./InputTodo";
@@ -12,19 +12,17 @@ const TodosComp = (props) => {
         <div className="todos-container">
           <Title
             key={props.lid}
-            editable={"false"}
-            editTitle={props.editTitle}
-            activeList={props.activeList}
+            onEditTitle={props.onEditTitle}
+            onActiveList={props.onActiveList}
           >
             {props.title}
           </Title>
           <TodoList
             todoData={props.todoData}
-            deleteTodo={props.deleteTodo}
-            editTodo={props.editTodo}
-            // updateTodo={updateTodoHandler}
+            onDeleteTodo={props.onDeleteTodo}
+            onEditTodo={props.onEditTodo}
           />
-          <InputTodo addTodo={props.addTodo} />
+          <InputTodo onAddTodo={props.onAddTodo} />
         </div>
       </Card>
     </div>

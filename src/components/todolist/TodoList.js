@@ -2,7 +2,7 @@ import "./TodoList.css";
 
 import Todo from "./Todo";
 
-import { getTime } from "../../helpers";
+import { getTime } from "../helpers";
 
 const TodoList = (props) => {
   return (
@@ -14,8 +14,8 @@ const TodoList = (props) => {
             tid={todo.tid}
             checked={todo.checked}
             lastUpdated={getTime(todo.lastUpdated)}
-            onDeleteTodo={props.deleteTodo}
-            editTodo={props.editTodo}
+            onDeleteTodo={props.onDeleteTodo}
+            onEditTodo={props.onEditTodo}
           >
             {todo.value}
           </Todo>

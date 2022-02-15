@@ -2,11 +2,11 @@ import "./App.css";
 
 import { useEffect, useState } from "react";
 
-import BackgroundImg from "./UI/BackgroundImg";
+import BackgroundImg from "./components/UI/BackgroundImg";
 import Dock from "./components/dock/Dock";
 import TodosComp from "./components/todolist/TodosComp";
 
-// import { DUMMY_LIST_DATA, EMPTY_DUMMY_LIST_DATA } from "./helpers.js";
+// import { DUMMY_LIST_DATA, EMPTY_DUMMY_LIST_DATA } from "./components/helpers.js";
 
 let autoIncListKey = 10;
 let autoIncTodoKey = 100;
@@ -25,14 +25,14 @@ function App() {
   };
 
   // List Data Handlers
-  const onAddTodoListHandler = () => {
+  const addTodoListHandler = () => {
     // issue, inside edit +2, outside +1!
     const listKey = autoIncListKey++;
     localStorage.setItem("lid", autoIncListKey);
     editTodoListData((prevTodoLists) => {
       const newTodoList = {
         lid: listKey,
-        title: "New Todo List",
+        title: `Todo List #${listKey}`,
         lastUpdated: new Date(),
         todoData: [],
       };
@@ -45,7 +45,7 @@ function App() {
       return updatedTodoLists;
     });
   };
-  const onDeleteTodoListHandler = (lid) => {
+  const deleteTodoListHandler = (lid) => {
     editTodoListData((prevTodoLists) => {
       const updatedTodoLists = { ...prevTodoLists };
       delete updatedTodoLists[lid];
@@ -56,7 +56,7 @@ function App() {
       return updatedTodoLists;
     });
   };
-  const onEditTitleHandler = (title) => {
+  const editTitleHandler = (title) => {
     editTodoListData((prevTodoLists) => {
       const updatedTodoLists = { ...prevTodoLists };
       updatedTodoLists[activeLID].title = title;
@@ -139,7 +139,6 @@ function App() {
       localStorage.setItem("data", JSON.stringify(todoListData));
     }
   }, [todoListData]);
-
   useEffect(() => {
     if (isStartA === true) {
       isStartA = false;
@@ -155,20 +154,20 @@ function App() {
         <Dock
           activeLID={activeLID}
           todoListData={todoListData}
-          addTodoList={onAddTodoListHandler}
-          deleteTodoList={onDeleteTodoListHandler}
-          activeList={setActiveListHandler}
+          onActiveList={setActiveListHandler}
+          onAddTodoList={addTodoListHandler}
+          onDeleteTodoList={deleteTodoListHandler}
         />
         {todoListData[activeLID] ? (
           <TodosComp
             lid={activeLID}
             todoData={todoListData[activeLID].todoData}
             title={todoListData[activeLID].title}
-            deleteTodo={deleteTodoHandler}
-            editTodo={editTodoHandler}
-            addTodo={addTodoHandler}
-            activeList={setActiveListHandler}
-            editTitle={onEditTitleHandler}
+            onActiveList={setActiveListHandler}
+            onEditTitle={editTitleHandler}
+            onAddTodo={addTodoHandler}
+            onEditTodo={editTodoHandler}
+            onDeleteTodo={deleteTodoHandler}
           />
         ) : (
           ``

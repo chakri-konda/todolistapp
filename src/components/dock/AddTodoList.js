@@ -4,8 +4,7 @@ import "./AddTodoList.css";
 
 const AddTodoList = (props) => {
   const onAddTodoListHandler = (event) => {
-    event.preventDefault();
-    props.addTodoList();
+    props.onAddTodoList();
   };
 
   return (

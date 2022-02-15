@@ -11,33 +11,31 @@ const Todo = (props) => {
   let editedValue = props.children;
   const [contentEditable, setContentEditable] = useState("false");
 
-  const onDeleteTodoHandler = (event) => {
+  const deleteTodoHandler = (event) => {
     if (event !== undefined) event.preventDefault();
     props.onDeleteTodo(props.tid);
   };
-
-  const onEditTodoHandler = (event) => {
+  const editTodoHandler = (event) => {
     if (event.target.checked) setContentEditable("true");
     else {
       editedValue = editedValue.trim();
       if (props.children !== editedValue) {
         if (editedValue.length === 0) {
-          onDeleteTodoHandler();
+          deleteTodoHandler();
           return;
         } else {
-          props.editTodo(props.tid, props.checked, editedValue);
+          props.onEditTodo(props.tid, props.checked, editedValue);
         }
       }
       setContentEditable("false");
     }
   };
-
-  const onContentChangeHandler = (event) => {
-    editedValue = event.target.textContent;
+  const checkTodoHandler = (event) => {
+    props.onEditTodo(props.tid, props.checked ? false : true);
   };
 
-  const onCheckTodoHandler = (event) => {
-    props.editTodo(props.tid, props.checked ? false : true);
+  const contentChangeHandler = (event) => {
+    editedValue = event.target.textContent;
   };
 
   return (
@@ -46,13 +44,13 @@ const Todo = (props) => {
         <input
           type="checkbox"
           defaultChecked={props.checked}
-          onChange={onCheckTodoHandler}
+          onChange={checkTodoHandler}
         />
         <div className="todo-context">
           <div
             className="todo-context-value"
             contentEditable={contentEditable}
-            onInput={onContentChangeHandler}
+            onInput={contentChangeHandler}
             suppressContentEditableWarning={true}
           >
             {editedValue}
@@ -74,7 +72,7 @@ const Todo = (props) => {
           <input
             className="check-box"
             type="checkbox"
-            onChange={onEditTodoHandler}
+            onChange={editTodoHandler}
           />
           {contentEditable === "false" ? (
             <TiPencil className="pencil" size={19} />
@@ -82,10 +80,7 @@ const Todo = (props) => {
             <MdOutlineDownloadDone className="pencil" size={19} />
           )}
         </label>
-        <button
-          className="todo-mod-btn delete-btn"
-          onClick={onDeleteTodoHandler}
-        >
+        <button className="todo-mod-btn delete-btn" onClick={deleteTodoHandler}>
           <BiTrash size={19} />
         </button>
       </div>

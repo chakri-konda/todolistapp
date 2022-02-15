@@ -104,7 +104,7 @@ const getIST = (date) => {
   return new Date(date.getTime() + (ISTOffset + timeOffset) * 60000);
 };
 
-export const isToday = (cdate) => {
+const isToday = (cdate) => {
   const today = getIST(new Date());
   const date = new Date(cdate);
 
@@ -116,19 +116,20 @@ export const getTime = (cdate) => {
   if (isToday(date)) {
     let hours = date.getHours();
     let mins = date.getMinutes();
-    let merid = hours < 12 ? "AM" : "PM";
+    let merid = hours < 12 ? " AM" : " PM";
 
     if (hours > 12) hours -= 12;
 
     if (hours < 10) hours = "0" + hours;
     if (mins < 10) mins = "0" + mins;
-    return hours + ":" + mins + " " + merid;
-  }
-  let day = date.getDate();
-  if (day < 10) day = "0" + day;
-  let month = date.getMonth();
-  if (month < 10) month = "0" + month;
-  const year = date.getFullYear();
+    return hours + ":" + mins + merid;
+  } else {
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    const year = date.getFullYear();
 
-  return day + "/" + month + "/" + year;
+    if (day < 10) day = "0" + day;
+    if (month < 10) month = "0" + month;
+    return day + "/" + month + "/" + year;
+  }
 };

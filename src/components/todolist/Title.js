@@ -4,13 +4,13 @@ import { useState } from "react";
 import { TiPencil } from "react-icons/ti";
 import { MdOutlineDownloadDone } from "react-icons/md";
 
-import saitamaProfile from "./saitama.png";
+import saitamaProfilePic from "./saitama.png";
 
 const Title = (props) => {
   let titleValue = props.children;
   const [contentEditable, setContentEditable] = useState("false");
 
-  const onEditTitleHandler = (event) => {
+  const editTitleHandler = (event) => {
     if (event.target.checked) setContentEditable("true");
     else {
       titleValue = titleValue.trim();
@@ -18,18 +18,17 @@ const Title = (props) => {
         // prob - title not changing back to props.child if len is 0
         if (titleValue.length === 0) {
           titleValue = props.children;
-          props.activeList(-1);
+          // bcz of prob, changing the focus of active todolist.
+          props.onActiveList(-1);
           alert("Title Can't be Empty!");
         } else {
-          // send the title back to main file
-          props.editTitle(titleValue);
+          props.onEditTitle(titleValue);
         }
       }
       setContentEditable("false");
     }
   };
-
-  const onContentChangeHandler = (event) => {
+  const contentChangeHandler = (event) => {
     titleValue = event.target.textContent;
   };
 
@@ -38,31 +37,27 @@ const Title = (props) => {
       <div
         className="title-text"
         contentEditable={contentEditable}
-        onInput={onContentChangeHandler}
+        onInput={contentChangeHandler}
         suppressContentEditableWarning={true}
       >
         {titleValue}
       </div>
       <div className="flex">
-        <label
-          id="title-edit-pencil"
-          className="flex switch"
-          style={{ display: `${props.checked ? "none" : ""}` }}
-        >
+        <label id="title-edit-pencil" className="flex switch">
           <input
             className="check-box"
             type="checkbox"
-            onChange={onEditTitleHandler}
+            onChange={editTitleHandler}
           ></input>
           {contentEditable === "false" ? (
             <TiPencil className="pencil" size={19} />
           ) : (
-            <MdOutlineDownloadDone className="pencil" size={19} />
+            <MdOutlineDownloadDone className="pencil" size={18} />
           )}
         </label>
         <img
           className="title-profile-img"
-          src={saitamaProfile}
+          src={saitamaProfilePic}
           alt="profile pic"
         ></img>
       </div>
