@@ -126,7 +126,8 @@ const isToday = (cdate) => {
 };
 
 export const getTime = (cdate) => {
-  const date = new Date(cdate);
+  const date = new Date(Date.parse(cdate));
+
   if (isToday(date)) {
     let hours = date.getHours();
     let mins = date.getMinutes();

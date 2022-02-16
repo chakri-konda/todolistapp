@@ -4,35 +4,35 @@ import { getNewListKey, getNewTodoKey } from "../components/helpers";
 
 const todoListDataSlice = createSlice({
   name: "todoListData",
-  initialState: {},
+  initialState: { data: {} },
   reducers: {
     addTodoList(state) {
       const listKey = getNewListKey();
       const newTodoList = {
         lid: listKey,
         title: `Todo List #${listKey}`,
-        lastUpdated: new Date(),
+        lastUpdated: new Date().toString(),
         todos: {},
       };
-      state[listKey] = newTodoList;
+      state.data[listKey] = newTodoList;
     },
     deleteTodoList(state, action) {
       const lid = action.payload.lid;
-      delete state[lid];
+      delete state.data[lid];
     },
     editTitle(state, action) {
       const lid = action.payload.lid;
       const title = action.payload.title;
 
-      state[lid].title = title;
-      state[lid].lastUpdated = new Date();
+      state.data[lid].title = title;
+      state.data[lid].lastUpdated = new Date().toString();
     },
 
     addTodo(state, action) {
       const tid = getNewTodoKey();
       const lid = action.payload.lid;
       const value = action.payload.todoText;
-      const lastUpdated = new Date();
+      const lastUpdated = new Date().toString();
       const newTodo = {
         tid,
         value,
@@ -40,29 +40,29 @@ const todoListDataSlice = createSlice({
         lastUpdated,
       };
 
-      state[lid].todos[tid] = newTodo;
-      state[lid].lastUpdated = lastUpdated;
+      state.data[lid].todos[tid] = newTodo;
+      state.data[lid].lastUpdated = lastUpdated;
     },
     deleteTodo(state, action) {
       const lid = action.payload.lid;
       const tid = action.payload.tid;
 
-      delete state[lid].todos[tid];
+      delete state.data[lid].todos[tid];
     },
     editTodo(state, action) {
       const lid = action.payload.lid;
       const tid = action.payload.tid;
       const checked = action.payload.checked;
       const todoText = action.payload.todoText;
-      const lastUpdated = new Date();
+      const lastUpdated = new Date().toString();
 
       if (checked !== undefined) {
-        state[lid].todos[tid].checked = checked;
+        state.data[lid].todos[tid].checked = checked;
       }
       if (todoText !== undefined) {
-        state[lid].todos[tid].value = todoText;
-        state[lid].todos[tid].lastUpdated = lastUpdated;
-        state[lid].lastUpdated = lastUpdated;
+        state.data[lid].todos[tid].value = todoText;
+        state.data[lid].todos[tid].lastUpdated = lastUpdated;
+        state.data[lid].lastUpdated = lastUpdated;
       }
     },
   },

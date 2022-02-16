@@ -6,7 +6,7 @@ import AddTodoList from "./AddTodoList";
 import { useSelector } from "react-redux";
 
 const Dock = (props) => {
-  const todoListDataRaw = useSelector((state) => state.todoListData);
+  const todoListDataRaw = useSelector((state) => state.todoListData.data);
   const todoListData = Object.values(todoListDataRaw);
 
   const isEmptyTodoList = todoListData.length === 0;

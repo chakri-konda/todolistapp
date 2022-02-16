@@ -9,7 +9,7 @@ import EmptyList from "./EmptyList";
 import { useSelector } from "react-redux";
 
 const TodosComp = (props) => {
-  const todoListDataRaw = useSelector((state) => state.todoListData);
+  const todoListDataRaw = useSelector((state) => state.todoListData.data);
   const todoList = todoListDataRaw[props.lid];
   if (todoList === undefined) return ``;
 
