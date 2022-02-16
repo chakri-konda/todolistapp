@@ -3,8 +3,13 @@ import "./Dock.css";
 import TodoLists from "./TodoLists";
 import AddTodoList from "./AddTodoList";
 
+import { useSelector } from "react-redux";
+
 const Dock = (props) => {
-  const isEmptyTodoList = Object.keys(props.todoListData).length === 0;
+  const todoListDataRaw = useSelector((state) => state.todoListData);
+  const todoListData = Object.values(todoListDataRaw);
+
+  const isEmptyTodoList = todoListData.length === 0;
 
   return (
     <div
@@ -12,11 +17,10 @@ const Dock = (props) => {
         isEmptyTodoList ? "empty-dock-container" : "dock-container"
       }`}
     >
-      <AddTodoList onAddTodoList={props.onAddTodoList} />
+      <AddTodoList />
       <TodoLists
+        todoListData={todoListData}
         activeLID={props.activeLID}
-        todoListData={props.todoListData}
-        onDeleteTodoList={props.onDeleteTodoList}
         onActiveList={props.onActiveList}
       />
     </div>

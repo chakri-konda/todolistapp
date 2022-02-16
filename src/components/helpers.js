@@ -1,24 +1,38 @@
 export const EMPTY_DUMMY_LIST_DATA = {};
 
+export const getNewListKey = (() => {
+  let autoIncKey = 10;
+  return () => {
+    return autoIncKey++;
+  };
+})();
+
+export const getNewTodoKey = (() => {
+  let autoIntKey = 100;
+  return () => {
+    return autoIntKey++;
+  };
+})();
+
 export const DUMMY_LIST_DATA = {
   1: {
     lid: 1,
     title: "Saitama's Todo List",
     lastUpdated: new Date(2021, 5, 6),
-    todoData: [
-      {
+    todoData: {
+      10: {
         tid: 10,
         value: "Bring some groceries at DMart.",
         checked: true,
         lastUpdated: new Date(2021, 5, 6),
       },
-      {
+      11: {
         tid: 11,
         value: "Beat some villains.",
         checked: false,
         lastUpdated: new Date(2021, 5, 6),
       },
-    ],
+    },
   },
   2: {
     lid: 2,

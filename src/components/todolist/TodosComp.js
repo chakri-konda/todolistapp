@@ -6,8 +6,15 @@ import TodoList from "./TodoList";
 import InputTodo from "./InputTodo";
 import EmptyList from "./EmptyList";
 
+import { useSelector } from "react-redux";
+
 const TodosComp = (props) => {
-  const isTodoDataEmpty = props.todoData.length === 0;
+  const todoListDataRaw = useSelector((state) => state.todoListData);
+  const todoList = todoListDataRaw[props.lid];
+  if (todoList === undefined) return ``;
+
+  const todos = Object.values(todoList.todos);
+  const isTodoDataEmpty = todos.length === 0;
 
   return (
     <div className="main-container">
@@ -15,21 +22,17 @@ const TodosComp = (props) => {
         <div className="todos-container">
           <Title
             key={props.lid}
-            onEditTitle={props.onEditTitle}
-            onActiveList={props.onActiveList}
+            lid={props.lid}
+            onSetActiveList={props.onSetActiveList}
           >
-            {props.title}
+            {todoList.title}
           </Title>
           {isTodoDataEmpty ? (
             <EmptyList />
           ) : (
-            <TodoList
-              todoData={props.todoData}
-              onDeleteTodo={props.onDeleteTodo}
-              onEditTodo={props.onEditTodo}
-            />
+            <TodoList lid={props.lid} todoData={todos} />
           )}
-          <InputTodo onAddTodo={props.onAddTodo} />
+          <InputTodo lid={props.lid} />
         </div>
       </Card>
     </div>

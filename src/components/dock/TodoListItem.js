@@ -1,11 +1,17 @@
 import "./TodoListItem.css";
-import { BiTrash } from "react-icons/bi";
-import { AiOutlineSave } from "react-icons/ai";
+
 import Card from "../UI/Card";
 
+import { BiTrash } from "react-icons/bi";
+import { AiOutlineSave } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { todoListDataActions } from "../../store/data-slice";
+
 const TodoListItem = (props) => {
+  const dispatch = useDispatch();
+
   const deleteTodoListHandler = (event) => {
-    props.onDeleteTodoList(props.lid);
+    dispatch(todoListDataActions.deleteTodoList({ lid: props.lid }));
   };
 
   const activeListHandler = (event) => {

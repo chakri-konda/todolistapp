@@ -10,6 +10,7 @@ const TodoList = (props) => {
       {props.todoData.map((todo) => {
         return (
           <Todo
+            lid={props.lid}
             key={todo.tid}
             tid={todo.tid}
             checked={todo.checked}

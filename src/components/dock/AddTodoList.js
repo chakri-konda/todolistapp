@@ -1,10 +1,14 @@
-import { BiAddToQueue } from "react-icons/bi";
-
 import "./AddTodoList.css";
 
+import { useDispatch } from "react-redux";
+import { todoListDataActions } from "../../store/data-slice";
+import { BiAddToQueue } from "react-icons/bi";
+
 const AddTodoList = (props) => {
+  const dispatch = useDispatch();
+
   const onAddTodoListHandler = (event) => {
-    props.onAddTodoList();
+    dispatch(todoListDataActions.addTodoList());
   };
 
   return (

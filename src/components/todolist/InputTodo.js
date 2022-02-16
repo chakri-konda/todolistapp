@@ -1,10 +1,12 @@
 import "./InputTodo.css";
 
 import { useState } from "react";
-
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { todoListDataActions } from "../../store/data-slice";
 
 const InputTodo = (props) => {
+  const dispatch = useDispatch();
   const [todoText, setTodoText] = useState("");
 
   const addTodoHandler = (event) => {
@@ -14,7 +16,8 @@ const InputTodo = (props) => {
       return;
     }
 
-    props.onAddTodo(todoText);
+    dispatch(todoListDataActions.addTodo({ lid: props.lid, todoText }));
+    // props.onAddTodo(todoText);
     setTodoText("");
   };
 

@@ -3,13 +3,25 @@ import "./Title.css";
 import { useState } from "react";
 import { TiPencil } from "react-icons/ti";
 import { MdOutlineDownloadDone } from "react-icons/md";
+import { useDispatch } from "react-redux";
 
 import saitamaProfilePic from "./saitama.png";
+import { todoListDataActions } from "../../store/data-slice";
 
 const Title = (props) => {
+  const dispatch = useDispatch();
+
+  // prob when using state for title, cursor moving to front on each key stroke
   let titleValue = props.children;
   const [contentEditable, setContentEditable] = useState("false");
 
+  const contentChangeHandler = (event) => {
+    titleValue = event.target.textContent;
+  };
+
+  const titleChangeHandler = (title) => {
+    dispatch(todoListDataActions.editTitle({ lid: props.lid, title: title }));
+  };
   const editTitleHandler = (event) => {
     if (event.target.checked) setContentEditable("true");
     else {
@@ -18,18 +30,12 @@ const Title = (props) => {
         // prob - title not changing back to props.child if len is 0
         if (titleValue.length === 0) {
           titleValue = props.children;
-          // bcz of prob, changing the focus of active todolist.
-          props.onActiveList(-1);
+          props.onSetActiveList(-1);
           alert("Title Can't be Empty!");
-        } else {
-          props.onEditTitle(titleValue);
-        }
+        } else titleChangeHandler(titleValue);
       }
       setContentEditable("false");
     }
-  };
-  const contentChangeHandler = (event) => {
-    titleValue = event.target.textContent;
   };
 
   return (

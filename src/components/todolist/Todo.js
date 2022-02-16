@@ -6,32 +6,49 @@ import { AiOutlineSave } from "react-icons/ai";
 import { BiTrash } from "react-icons/bi";
 import { TiPencil } from "react-icons/ti";
 import { MdOutlineDownloadDone } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { todoListDataActions } from "../../store/data-slice";
 
 const Todo = (props) => {
+  const dispatch = useDispatch();
   let editedValue = props.children;
   const [contentEditable, setContentEditable] = useState("false");
 
   const deleteTodoHandler = (event) => {
-    if (event !== undefined) event.preventDefault();
-    props.onDeleteTodo(props.tid);
+    dispatch(
+      todoListDataActions.deleteTodo({
+        lid: props.lid,
+        tid: props.tid,
+      })
+    );
   };
+
   const editTodoHandler = (event) => {
     if (event.target.checked) setContentEditable("true");
     else {
       editedValue = editedValue.trim();
+      if (editedValue.length === 0) deleteTodoHandler();
       if (props.children !== editedValue) {
-        if (editedValue.length === 0) {
-          deleteTodoHandler();
-          return;
-        } else {
-          props.onEditTodo(props.tid, props.checked, editedValue);
-        }
+        dispatch(
+          todoListDataActions.editTodo({
+            lid: props.lid,
+            tid: props.tid,
+            todoText: editedValue,
+          })
+        );
+        setContentEditable("false");
       }
-      setContentEditable("false");
     }
   };
+
   const checkTodoHandler = (event) => {
-    props.onEditTodo(props.tid, props.checked ? false : true);
+    dispatch(
+      todoListDataActions.editTodo({
+        lid: props.lid,
+        tid: props.tid,
+        checked: props.checked ? false : true,
+      })
+    );
   };
 
   const contentChangeHandler = (event) => {
